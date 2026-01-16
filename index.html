@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Интернет-магазин</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="notifications"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">TechStore</a>
+                </div>
+                
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Поиск товаров...">
+                    <button id="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="autocomplete-dropdown"></div>
+                </div>
+                
+                <div class="header-icons">
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                    <a href="account.html" class="user-icon">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <aside class="sidebar">
+            <div class="filters">
+                <h3>Фильтры</h3>
+                
+                <div class="filter-section">
+                    <h4>Категории</h4>
+                    <div class="categories-list">
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h4>Цена</h4>
+                    <div class="price-range">
+                        <input type="number" id="price-min" placeholder="От" min="0">
+                        <input type="number" id="price-max" placeholder="До" min="0">
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="discount-only">
+                        <span>Только товары со скидкой</span>
+                    </label>
+                </div>
+                
+                <button id="apply-filters" class="btn">Применить</button>
+                <button id="reset-filters" class="btn btn-secondary">Сбросить</button>
+            </div>
+        </aside>
+
+        <main class="catalog">
+            <div class="catalog-header">
+                <h2>Каталог</h2>
+                <select id="sort-select">
+                    <option value="">По умолчанию</option>
+                    <option value="rating_asc">Рейтинг (по возрастанию)</option>
+                    <option value="rating_desc">Рейтинг (по убыванию)</option>
+                    <option value="price_asc">Цена (по возрастанию)</option>
+                    <option value="price_desc">Цена (по убыванию)</option>
+                </select>
+            </div>
+            
+            <div class="goods-grid" id="goods-container">
+                <p>Загрузка товаров...</p>
+            </div>
+            
+            <button id="load-more" class="btn">Загрузить ещё</button>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TechStore</h3>
+                    <p>Лучший выбор техники и гаджетов</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>Email: info@techstore.ru</p>
+                    <p>Телефон: +7 (495) 123-45-67</p>
+                    <p>Адрес: г. Москва, ул. Примерная, д. 1</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
