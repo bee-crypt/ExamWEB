@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - TechStore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Область уведомлений -->
+    <div class="notifications"></div>
+
+    <!-- Хедер -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">TechStore</a>
+                </div>
+                <div class="header-icons">
+                    <a href="index.html" class="home-icon">
+                        <i class="fas fa-home"></i>
+                    </a>
+                    <a href="cart.html" class="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <div class="container account-page">
+        <section class="orders-section">
+            <h2>Заказы</h2>
+            <div class="table-container">
+                <table id="orders-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Дата и время</th>
+                            <th>Состав заказа</th>
+                            <th>Стоимость</th>
+                            <th>Дата доставки</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Заказы будут загружены через JS -->
+                        <tr>
+                            <td colspan="6" class="loading">Загрузка заказов...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- Модальное окно просмотра заказа -->
+    <div class="modal" id="view-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="view-modal-title">Просмотр заказа</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body" id="view-modal-body">
+                <!-- Содержимое будет заполнено через JS -->
+            </div>
+            <div class="modal-actions">
+                <button class="btn" onclick="document.getElementById('view-modal').style.display='none'">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно редактирования заказа -->
+    <div class="modal" id="edit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="edit-modal-title">Редактирование заказа</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-order-form">
+                    <div class="form-group">
+                        <label for="edit-full-name">Имя *</label>
+                        <input type="text" id="edit-full-name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-email">Email *</label>
+                        <input type="email" id="edit-email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-phone">Телефон *</label>
+                        <input type="text" id="edit-phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-address">Адрес доставки *</label>
+                        <input type="text" id="edit-address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-date">Дата доставки *</label>
+                        <input type="date" id="edit-date" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-interval">Временной интервал *</label>
+                        <select id="edit-interval" required>
+                            <option value="">Выберите интервал</option>
+                            <option value="08:00-12:00">08:00-12:00</option>
+                            <option value="12:00-14:00">12:00-14:00</option>
+                            <option value="14:00-18:00">14:00-18:00</option>
+                            <option value="18:00-22:00">18:00-22:00</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="edit-comment">Комментарий к заказу</label>
+                        <textarea id="edit-comment" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="document.getElementById('edit-modal').style.display='none'">
+                    Отмена
+                </button>
+                <button class="btn btn-primary" id="save-order-changes">
+                    Сохранить
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно удаления заказа -->
+    <div class="modal confirm-modal" id="delete-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Подтверждение удаления</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Вы уверены, что хотите удалить заказ?</p>
+            </div>
+            <div class="modal-actions confirm-actions">
+                <button class="btn btn-secondary" id="cancel-delete">
+                    Нет
+                </button>
+                <button class="btn btn-primary" id="confirm-delete">
+                    Да
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TechStore</h3>
+                    <p>Лучший выбор техники и гаджетов</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>Email: info@techstore.ru</p>
+                    <p>Телефон: +7 (495) 123-45-67</p>
+                    <p>Адрес: г. Москва, ул. Примерная, д. 1</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/account.js"></script>
+</body>
+</html>
